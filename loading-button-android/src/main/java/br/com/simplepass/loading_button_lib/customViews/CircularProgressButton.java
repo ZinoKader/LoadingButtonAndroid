@@ -159,6 +159,7 @@ public class CircularProgressButton extends Button implements AnimatedButton {
 
         mState = State.IDLE;
 
+        mParams.mCompoundDrawables = this.getCompoundDrawables();
         mParams.mText = this.getText().toString();
         setBackground(mGradientDrawable);
     }
@@ -332,6 +333,12 @@ public class CircularProgressButton extends Button implements AnimatedButton {
             public void onAnimationEnd(Animator animation) {
                 setClickable(true);
                 mIsMorphingInProgress = false;
+        
+                setCompoundDrawablesWithIntrinsicBounds(
+                    mParams.mCompoundDrawables[0], 
+                    mParams.mCompoundDrawables[1], 
+                    mParams.mCompoundDrawables[2], 
+                    mParams.mCompoundDrawables[3]);
                 setText(mParams.mText);
             }
         });
@@ -411,6 +418,11 @@ public class CircularProgressButton extends Button implements AnimatedButton {
             public void onAnimationEnd(Animator animation) {
                 setClickable(true);
                 mIsMorphingInProgress = false;
+                setCompoundDrawablesWithIntrinsicBounds(
+                    mParams.mCompoundDrawables[0], 
+                    mParams.mCompoundDrawables[1], 
+                    mParams.mCompoundDrawables[2], 
+                    mParams.mCompoundDrawables[3]);
                 setText(mParams.mText);
                 onAnimationEndListener.onAnimationEnd();
             }
@@ -533,6 +545,7 @@ public class CircularProgressButton extends Button implements AnimatedButton {
         private Integer mInitialHeight;
         private int mInitialWidth;
         private String mText;
+        private Drawable[] mCompoundDrawables;
         private float mInitialCornerRadius;
         private float mFinalCornerRadius;
     }
