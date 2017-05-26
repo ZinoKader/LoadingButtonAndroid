@@ -27,6 +27,7 @@ import br.com.simplepass.loading_button_lib.animatedDrawables.CircularRevealAnim
 import br.com.simplepass.loading_button_lib.interfaces.AnimatedButton;
 import br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener;
 
+import android.util.Log;
 
 /**
  * Made by Leandro Ferreira.
@@ -162,6 +163,15 @@ public class CircularProgressButton extends Button implements AnimatedButton {
         mParams.mCompoundDrawables = this.getCompoundDrawables();
         mParams.mText = this.getText().toString();
         setBackground(mGradientDrawable);
+        
+        for(int i = 0; i < mParams.mCompoundDrawables.length; i++) {
+            if (mParams.mCompoundDrawables[i] == null) {
+                Log.d("LOADINGBUTTON", "drawable null");
+            }
+            else {
+                Log.d("LOADINGBUTTON", "drawable not null");
+            }
+        }
     }
 
     /**
